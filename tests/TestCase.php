@@ -25,6 +25,20 @@ class TestCase extends PHPUnit_TestCase
         return new Client(['handler' => $handlerStack]);
     }
 
+    protected function getGuzzleClientWithMockedHandlerFailure()
+    {
+        $mock = new MockHandler([
+            new Response(
+                400,
+                [],
+                ''
+            )
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        return new Client(['handler' => $handlerStack]);
+    }
+
     protected function getFastapiSucessfulResponseHeaders(): array
     {
         return [

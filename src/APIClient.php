@@ -73,7 +73,7 @@ class APIClient
                 'Client-Code' => $this->clientCode,
                 'Client-key' => $this->clientKey,
             ],
-            'http_error' => $this->httpError
+            'http_errors' => $this->httpError
         ];
 
         $response = $this->httpClient->get($uri, $options);
