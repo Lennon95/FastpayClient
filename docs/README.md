@@ -19,7 +19,7 @@
 * A dependência `GuzzleHttp\Client` é o cliente HTTP usado para enviar e receber as requisições
 * O `GuzzleHttp\Client` é criado pela classe no construtor com base na `$baseUri` informada;
   no entanto, é possível, via setter, sobrescrever o cliente HTTP. Essa possibilidade permite
-  passar um objeto com um `GuzzleHttp\Handler\MockHandler`, [que serve de mock para testes na camada HTTP
-  da dependência](https://docs.guzzlephp.org/en/stable/testing.html).
+  passar um objeto com um `GuzzleHttp\Handler\MockHandler`, [que serve de mock na camada HTTP
+  da dependência para execução de testes](https://docs.guzzlephp.org/en/stable/testing.html).
 
 
