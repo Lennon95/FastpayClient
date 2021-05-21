@@ -10,8 +10,6 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class APIClient
 {
-    const DEFAULT_BASE_URI = 'https://api-sandbox.fpay.me';
-
     /**
      * O valor de cada filtro aqui
      * indica se o filtro eh obrigatorio
@@ -30,15 +28,21 @@ class APIClient
     private bool $httpError;
 
     public function __construct(
-        ?Client $httpClient = null,
+        string $baseUri = 'https://api-sandbox.fpay.me',
         string $clientCode = 'FC-SB-15',
         string $clientKey = '6ea297bc5e294666f6738e1d48fa63d2',
         bool $httpError = false
     ) {
-        $this->httpClient = $httpClient ?? new Client(['base_uri' => self::DEFAULT_BASE_URI]);
+        $this->httpClient = new Client(['base_uri' => $baseUri]);
         $this->clientCode = $clientCode;
         $this->clientKey = $clientKey;
         $this->httpError = $httpError;
+    }
+
+    public function setHttpClient(Client $httpClient): self
+    {
+        $this->httpClient = $httpClient;
+        return $this;
     }
 
     public function setCredentials(string $clientCode, string $clientKey): self
