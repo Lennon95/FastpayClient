@@ -3,6 +3,7 @@
 * O diagrama UML das classes pode ser visto em [aqui](uml.jpg)
 * As classes `Venda`, `Cliente`, `Parcela` e `ConsultaVenda` sao [DTOs](https://en.wikipedia.org/wiki/Data_transfer_object) e, por isso, sao imutaveis
 * Todos os DTOs implementam a interface [`FactoryMethod`](https://refactoring.guru/pt-br/design-patterns/factory-method) precisamente para padronizar a forma de aplicar o padrão de projeto em questão
+* Para conversão em JSON, todos os DTOs também implementam a interface `JsonSerializable`
 
 ### Cliente da API
 
