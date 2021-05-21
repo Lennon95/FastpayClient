@@ -93,7 +93,7 @@ class Venda implements FactoryMethod
         return $this->parcelas;
     }
 
-    public static function construct(array $data): Venda
+    public static function construct(array $data): self
     {
         $cliente = Cliente::construct($data);
 
