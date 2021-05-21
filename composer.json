@@ -1,6 +1,6 @@
 {
-    "name": "Lennon95/FastpayClient",
-    "description": " Client de consulta API da Fastpay",
+    "name": "lennon95/fastpay-client",
+    "description": "Client de consulta API da Fastpay",
     "keywords": [
         "fastpay",
         "rest",
@@ -16,8 +16,8 @@
     ],
     "require": {
         "php": "^7.4",
-        "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"
