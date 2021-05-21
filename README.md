@@ -1,2 +1,2 @@
 # FastpayClient
-Client de consula à API da Fastpay
+Client de consulta à API da Fastpay
