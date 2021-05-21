@@ -93,11 +93,20 @@ class Parcela implements FactoryMethod
         if (!isset($data['dt_cobranca']))
             throw new InvalidDataException('Dados invalidos: data de cobrança nao informada.');
 
+        if (!($dataCobranca = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_cobranca'])))
+            throw new InvalidDataException('Formato da data de cobrança invalido: esperado Y-m-d.');
+
         if (!isset($data['dt_pagamento'])) // Parcela pode nao estar paga
             $data['dt_pagamento'] = '0000-00-00';
 
+        if (!($dataPagamento = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_pagamento'])))
+            throw new InvalidDataException('Formato da data de pagamento invalido: esperado Y-m-d.');
+
         if (!isset($data['dt_vencimento']))
             throw new InvalidDataException('Dados invalidos: data de vencimento nao informado.');
+
+        if (!($dataVencimento = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_vencimento'])))
+            throw new InvalidDataException('Formato da data de vencimento invalido: esperado Y-m-d.');
 
         if (!isset($data['tipo']))
             throw new InvalidDataException('Dados invalidos: tipo de pagamento da parcela nao informado.');
@@ -113,15 +122,6 @@ class Parcela implements FactoryMethod
 
         if (!isset($data['vl_taxa_fc']))
             throw new InvalidDataException('Dados invalidos: valor da taxa de fundo comum da parcela nao informado.');
-
-        if (!($dataCobranca = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_cobranca'])))
-            throw new InvalidDataException('Formato da data de cobrança invalido: esperado Y-m-d.');
-
-        if (!($dataPagamento = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_pagamento'])))
-            throw new InvalidDataException('Formato da data de pagamento invalido: esperado Y-m-d.');
-
-        if (!($dataVencimento = \DateTimeImmutable::createFromFormat('Y-m-d', $data['dt_vencimento'])))
-            throw new InvalidDataException('Formato da data de vencimento invalido: esperado Y-m-d.');
 
         return new self(
             $data['ref_parcela'],
