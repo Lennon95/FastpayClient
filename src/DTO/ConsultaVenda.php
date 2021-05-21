@@ -61,7 +61,7 @@ class ConsultaVenda implements FactoryMethod
         return $this->vendas;
     }
 
-    public static function construct(array $data): FactoryMethod
+    public static function construct(array $data): self
     {
         if (!isset($data['data']))
             throw new InvalidDataException('Dados invalidos: vendas nao informadas.');
