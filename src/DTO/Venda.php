@@ -6,7 +6,7 @@ namespace Fastpay\Client\DTO;
 
 use Fastpay\Client\Interfaces\FactoryMethod;
 
-class Venda implements FactoryMethod
+class Venda implements FactoryMethod, \JsonSerializable
 {
     private string $numero;
     private Cliente $cliente;
@@ -140,5 +140,21 @@ class Venda implements FactoryMethod
             (float) $data['vl_venda'],
             $parcelas
         );
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'numero' => $this->getNumero(),
+            'cliente' => $this->getCliente(),
+            'dataVenda' => $this->getDataVenda()->format('d/m/Y'),
+            'nroReferencia' => $this->getNroReferencia(),
+            'tipo' => $this->tipo,
+            'tipoVenda' => $this->getTipoVenda(),
+            'situacao' => $this->getSituacao(),
+            'nroParcelas' => $this->getNroParcelas(),
+            'valor' => $this->getValor(),
+            'parcelas' => $this->getParcelas(),
+        ];
     }
 }

@@ -6,7 +6,7 @@ namespace Fastpay\Client\DTO;
 
 use Fastpay\Client\Interfaces\FactoryMethod;
 
-class Cliente implements FactoryMethod
+class Cliente implements FactoryMethod, \JsonSerializable
 {
     private string $nome;
     private string $documento;
@@ -36,5 +36,13 @@ class Cliente implements FactoryMethod
             throw new InvalidDataException('Dados invalidos: documento do cliente nao informado.');
 
         return new self($data['nm_cliente'], $data['nu_documento']);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'nome' => $this->getNome(),
+            'documento' => $this->getDocumento()
+        ];
     }
 }

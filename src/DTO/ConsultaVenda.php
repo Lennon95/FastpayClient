@@ -6,7 +6,7 @@ namespace Fastpay\Client\DTO;
 
 use Fastpay\Client\Interfaces\FactoryMethod;
 
-class ConsultaVenda implements FactoryMethod
+class ConsultaVenda implements FactoryMethod, \JsonSerializable
 {
     private int $paginaAtual;
     private int $paginaFinal;
@@ -95,5 +95,17 @@ class ConsultaVenda implements FactoryMethod
             (int) $paginate['total'],
             $vendas
         );
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'paginaAtual' => $this->getPaginaAtual(),
+            'paginaFinal' => $this->getPaginaFinal(),
+            'vendasPorPagina' => $this->getVendasPorPagina(),
+            'qtdVendaConsulta' => $this->getQtdVendaConsulta(),
+            'totalVendas' => $this->getTotalVendas(),
+            'vendas' => $this->getVendas()
+        ];
     }
 }
