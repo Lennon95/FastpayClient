@@ -124,7 +124,7 @@ class Parcela implements FactoryMethod
             throw new InvalidDataException('Dados invalidos: valor da taxa de fundo comum da parcela nao informado.');
 
         return new self(
-            $data['ref_parcela'],
+            (string) $data['ref_parcela'],
             $dataCobranca,
             $dataPagamento,
             $dataVencimento,

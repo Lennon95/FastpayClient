@@ -3,11 +3,54 @@
 namespace Tests;
 
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
 
-class APIClientTestCase extends PHPUnit_TestCase
+class TestCase extends PHPUnit_TestCase
 {
-    private function getFastapiSucessfulResponseBodyJson(): string
+    protected function getGuzzleClientWithMockedHandlerSuccess()
+    {
+        $mock = new MockHandler([
+            new Response(
+                200,
+                $this->getFastapiSucessfulResponseHeaders(),
+                $this->getFastapiSucessfulResponseBodyJson()
+            )
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        return new Client(['handler' => $handlerStack]);
+    }
+
+    protected function getFastapiSucessfulResponseHeaders(): array
+    {
+        return [
+            'Server' => ' nginx',
+            'Content-Type' => ' application/json',
+            'Transfer-Encoding' => 'chunked',
+            'Connection' => 'keep-alive',
+            'Vary' => 'Accept-Encoding',
+            'X-Powered-By' => 'PHP/7.2.16',
+            'Cache-Control' => 'no-cache, private',
+            'Date' => 'Mon, 05 Apr 2021 14:09:41 GMT',
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+            'Access-Control-Allow-Credentials' => 'true',
+            'Access-Control-Max-Age' => '86400',
+            'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With, fc-connection',
+            'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains; preload',
+            'X-Frame-Options' => 'DENY',
+            'X-Content-Type-Options' => 'nosniff',
+            'X-XSS-Protection' => '1; mode=block',
+            'X-Robots-Tag' => 'none',
+            'Content-Encoding' => 'gzip'
+        ];
+    }
+
+    protected function getFastapiSucessfulResponseBodyJson(): string
     {
         return '
         {

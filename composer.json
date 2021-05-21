@@ -20,6 +20,9 @@
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
+    "scripts": {
+	"test": "phpunit"
+    },
     "autoload": {
         "psr-4": {
             "Fastpay\\Client\\": "src/"
