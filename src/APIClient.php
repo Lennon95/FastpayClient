@@ -38,6 +38,7 @@ class APIClient
         $this->httpClient = $httpClient ?? new Client(['base_uri' => self::DEFAULT_BASE_URI]);
         $this->clientCode = $clientCode;
         $this->clientKey = $clientKey;
+        $this->httpError = $httpError;
     }
 
     public function setCredentials(string $clientCode, string $clientKey): self
